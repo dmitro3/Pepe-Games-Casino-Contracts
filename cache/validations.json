@@ -1,0 +1,1758 @@
+{
+  "version": "3.4",
+  "log": [
+    {
+      "@chainlink/contracts/src/v0.8/AutomationBase.sol:AutomationBase": {
+        "src": "@chainlink/contracts/src/v0.8/AutomationBase.sol:4",
+        "version": {
+          "withMetadata": "e7482c690aa707516def05dcd20d3a3a3f7c51e43a6ce1acaeded7208840ce74",
+          "withoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b",
+          "linkedWithoutMetadata": "ac0db523ddc3e330f735df7b3b0b24460531c71290a891170e840f8f67d5ff6b"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@chainlink/contracts/src/v0.8/AutomationCompatible.sol:AutomationCompatible": {
+        "src": "@chainlink/contracts/src/v0.8/AutomationCompatible.sol:7",
+        "inherit": [
+          "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol:AutomationCompatibleInterface",
+          "@chainlink/contracts/src/v0.8/AutomationBase.sol:AutomationBase"
+        ],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:VRFConsumerBaseV2": {
+        "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:97",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "rawFulfillRandomWords(uint256,uint256[])"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "VRFConsumerBaseV2",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:104"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "vrfCoordinator",
+            "src": "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:99"
+          }
+        ],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol:AutomationCompatibleInterface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "checkUpkeep(bytes)",
+          "performUpkeep(bytes)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol:VRFCoordinatorV2Interface": {
+        "src": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "getRequestConfig()",
+          "requestRandomWords(bytes32,uint64,uint16,uint32,uint32)",
+          "createSubscription()",
+          "getSubscription(uint64)",
+          "requestSubscriptionOwnerTransfer(uint64,address)",
+          "acceptSubscriptionOwnerTransfer(uint64)",
+          "addConsumer(uint64,address)",
+          "removeConsumer(uint64,address)",
+          "cancelSubscription(uint64,address)",
+          "pendingRequestExists(uint64)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/access/AccessControl.sol:AccessControl": {
+        "src": "@openzeppelin/contracts/access/AccessControl.sol:50",
+        "inherit": [
+          "@openzeppelin/contracts/utils/introspection/ERC165.sol:ERC165",
+          "@openzeppelin/contracts/utils/introspection/IERC165.sol:IERC165",
+          "@openzeppelin/contracts/access/IAccessControl.sol:IAccessControl",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [
+          "@openzeppelin/contracts/utils/Strings.sol:Strings"
+        ],
+        "methods": [
+          "supportsInterface(bytes4)",
+          "hasRole(bytes32,address)",
+          "getRoleAdmin(bytes32)",
+          "grantRole(bytes32,address)",
+          "revokeRole(bytes32,address)",
+          "renounceRole(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_roles",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_mapping(t_bytes32,t_struct(RoleData)239_storage)",
+              "contract": "AccessControl",
+              "src": "@openzeppelin/contracts/access/AccessControl.sol:56"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(RoleData)239_storage)": {
+              "label": "mapping(bytes32 => struct AccessControl.RoleData)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(RoleData)239_storage": {
+              "label": "struct AccessControl.RoleData",
+              "members": [
+                {
+                  "label": "members",
+                  "type": "t_mapping(t_address,t_bool)",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "adminRole",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "1"
+                }
+              ],
+              "numberOfBytes": "64"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/access/AccessControlEnumerable.sol:AccessControlEnumerable": {
+        "src": "@openzeppelin/contracts/access/AccessControlEnumerable.sol:13",
+        "inherit": [
+          "@openzeppelin/contracts/access/AccessControl.sol:AccessControl",
+          "@openzeppelin/contracts/utils/introspection/ERC165.sol:ERC165",
+          "@openzeppelin/contracts/utils/introspection/IERC165.sol:IERC165",
+          "@openzeppelin/contracts/access/IAccessControlEnumerable.sol:IAccessControlEnumerable",
+          "@openzeppelin/contracts/access/IAccessControl.sol:IAccessControl",
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [
+          "@openzeppelin/contracts/utils/structs/EnumerableSet.sol:EnumerableSet"
+        ],
+        "methods": [
+          "supportsInterface(bytes4)",
+          "getRoleMember(bytes32,uint256)",
+          "getRoleMemberCount(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "label": "_roles",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_mapping(t_bytes32,t_struct(RoleData)239_storage)",
+              "contract": "AccessControl",
+              "src": "@openzeppelin/contracts/access/AccessControl.sol:56"
+            },
+            {
+              "label": "_roleMembers",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_bytes32,t_struct(AddressSet)3528_storage)",
+              "contract": "AccessControlEnumerable",
+              "src": "@openzeppelin/contracts/access/AccessControlEnumerable.sol:16"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_bytes32)dyn_storage": {
+              "label": "bytes32[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(AddressSet)3528_storage)": {
+              "label": "mapping(bytes32 => struct EnumerableSet.AddressSet)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_struct(RoleData)239_storage)": {
+              "label": "mapping(bytes32 => struct AccessControl.RoleData)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_bytes32,t_uint256)": {
+              "label": "mapping(bytes32 => uint256)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(AddressSet)3528_storage": {
+              "label": "struct EnumerableSet.AddressSet",
+              "members": [
+                {
+                  "label": "_inner",
+                  "type": "t_struct(Set)3213_storage",
+                  "offset": 0,
+                  "slot": "0"
+                }
+              ],
+              "numberOfBytes": "64"
+            },
+            "t_struct(RoleData)239_storage": {
+              "label": "struct AccessControl.RoleData",
+              "members": [
+                {
+                  "label": "members",
+                  "type": "t_mapping(t_address,t_bool)",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "adminRole",
+                  "type": "t_bytes32",
+                  "offset": 0,
+                  "slot": "1"
+                }
+              ],
+              "numberOfBytes": "64"
+            },
+            "t_struct(Set)3213_storage": {
+              "label": "struct EnumerableSet.Set",
+              "members": [
+                {
+                  "label": "_values",
+                  "type": "t_array(t_bytes32)dyn_storage",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "_indexes",
+                  "type": "t_mapping(t_bytes32,t_uint256)",
+                  "offset": 0,
+                  "slot": "1"
+                }
+              ],
+              "numberOfBytes": "64"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/access/IAccessControl.sol:IAccessControl": {
+        "src": "@openzeppelin/contracts/access/IAccessControl.sol:9",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "hasRole(bytes32,address)",
+          "getRoleAdmin(bytes32)",
+          "grantRole(bytes32,address)",
+          "revokeRole(bytes32,address)",
+          "renounceRole(bytes32,address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/access/IAccessControlEnumerable.sol:IAccessControlEnumerable": {
+        "src": "@openzeppelin/contracts/access/IAccessControlEnumerable.sol:11",
+        "inherit": [
+          "@openzeppelin/contracts/access/IAccessControl.sol:IAccessControl"
+        ],
+        "libraries": [],
+        "methods": [
+          "getRoleMember(bytes32,uint256)",
+          "getRoleMemberCount(bytes32)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/access/Ownable.sol:Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:20",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:28"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/security/Pausable.sol:Pausable": {
+        "src": "@openzeppelin/contracts/security/Pausable.sol:17",
+        "inherit": [
+          "@openzeppelin/contracts/utils/Context.sol:Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "paused()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Pausable",
+            "src": "@openzeppelin/contracts/security/Pausable.sol:33"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_paused",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Pausable",
+              "src": "@openzeppelin/contracts/security/Pausable.sol:28"
+            }
+          ],
+          "types": {
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/security/ReentrancyGuard.sol:ReentrancyGuard": {
+        "src": "@openzeppelin/contracts/security/ReentrancyGuard.sol:22",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ReentrancyGuard",
+            "src": "@openzeppelin/contracts/security/ReentrancyGuard.sol:39"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_status",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint256",
+              "contract": "ReentrancyGuard",
+              "src": "@openzeppelin/contracts/security/ReentrancyGuard.sol:37"
+            }
+          ],
+          "types": {
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:9",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:13",
+        "inherit": [
+          "@openzeppelin/contracts/token/ERC20/IERC20.sol:IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol:IERC20Permit": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol:14",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "permit(address,address,uint256,uint256,uint8,bytes32,bytes32)",
+          "nonces(address)",
+          "DOMAIN_SEPARATOR()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:SafeERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:19",
+        "version": {
+          "withMetadata": "8bb78473c2162a446b6b61d585f81205aa79a61b3d6d2b6100c7f05fa683193c",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [
+          "@openzeppelin/contracts/utils/Address.sol:Address"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/Address.sol:Address": {
+        "src": "@openzeppelin/contracts/utils/Address.sol:9",
+        "version": {
+          "withMetadata": "c4b38e720c53d1a01e948adad021d52c12dbbebf9a17abfe36f1a999603946b0",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "delegatecall",
+            "src": "@openzeppelin/contracts/utils/Address.sol:185"
+          },
+          {
+            "kind": "delegatecall",
+            "src": "@openzeppelin/contracts/utils/Address.sol:185"
+          }
+        ],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/Context.sol:Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:16",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/Multicall.sol:Multicall": {
+        "src": "@openzeppelin/contracts/utils/Multicall.sol:13",
+        "inherit": [],
+        "libraries": [
+          "@openzeppelin/contracts/utils/Address.sol:Address"
+        ],
+        "methods": [
+          "multicall(bytes[])"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/Strings.sol:Strings": {
+        "src": "@openzeppelin/contracts/utils/Strings.sol:12",
+        "version": {
+          "withMetadata": "9f132c05c118694cc1f96ea6e4ad10c071caf832b76aa4426291504748634286",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [
+          "@openzeppelin/contracts/utils/math/Math.sol:Math",
+          "@openzeppelin/contracts/utils/math/SignedMath.sol:SignedMath"
+        ],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/introspection/ERC165.sol:ERC165": {
+        "src": "@openzeppelin/contracts/utils/introspection/ERC165.sol:22",
+        "inherit": [
+          "@openzeppelin/contracts/utils/introspection/IERC165.sol:IERC165"
+        ],
+        "libraries": [],
+        "methods": [
+          "supportsInterface(bytes4)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/introspection/IERC165.sol:IERC165": {
+        "src": "@openzeppelin/contracts/utils/introspection/IERC165.sol:15",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "supportsInterface(bytes4)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/math/Math.sol:Math": {
+        "src": "@openzeppelin/contracts/utils/math/Math.sol:9",
+        "version": {
+          "withMetadata": "454d3868f19f63171961bb7511d5f88f6ef304a4ec0330f29132bf13df5094cb",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/math/SignedMath.sol:SignedMath": {
+        "src": "@openzeppelin/contracts/utils/math/SignedMath.sol:9",
+        "version": {
+          "withMetadata": "0d10c3d296886c0c6753303cda9d4babd216ba0c5461a43a0c50c026024fd5d2",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "@openzeppelin/contracts/utils/structs/EnumerableSet.sol:EnumerableSet": {
+        "src": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol:41",
+        "version": {
+          "withMetadata": "37623b7d9b7da1668036aab70e2e9ac9fd3c8f986410cd9b89cc12121cd10ae4",
+          "withoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db",
+          "linkedWithoutMetadata": "a64c6cf9c6ba9368f5132c93a0196b3204a7963dbb4dd05dfddb4ab23126b8db"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      },
+      "contracts/BankV2.sol:BankV2": {
+        "src": "contracts/BankV2.sol:12",
+        "version": {
+          "withMetadata": "554548d6cebcc418762152d8a9fb51c76b4752bf0c4b0197fe3f34a6f63eb350",
+          "withoutMetadata": "5da41de4d558f1be4fa8cf805f70de46fac64ecaa6c0726f10d8c9b68464613a",
+          "linkedWithoutMetadata": "5da41de4d558f1be4fa8cf805f70de46fac64ecaa6c0726f10d8c9b68464613a"
+        },
+        "inherit": [],
+        "libraries": [
+          "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:SafeERC20"
+        ],
+        "methods": [
+          "(address,address)",
+          "deposit(address,uint256)",
+          "withdraw(address,uint256)",
+          "setBalanceRisk(address,uint16)",
+          "addToken(address)",
+          "setAllowedToken(address,bool)",
+          "setHouseEdgeSplit(address,uint16,uint16,uint16,uint16)",
+          "setTokenMinBetAmount(address,uint256)",
+          "harvestDividends()",
+          "getDividends()",
+          "accountFees(address,uint256)",
+          "payout(address payable,address,uint256,uint256)",
+          "cashIn(address,uint256)",
+          "getTokens()",
+          "getMinBetAmount(address)",
+          "getMaxBetAmount(address,uint256)",
+          "isAllowedToken(address)",
+          "setTeamWallet(address)",
+          "withdrawHouseEdgeAmount(address)",
+          "getBalance(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "BankV2",
+            "src": "contracts/BankV2.sol:170"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "treasury",
+            "src": "contracts/BankV2.sol:55"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_tokensCount",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint8",
+              "contract": "BankV2",
+              "src": "contracts/BankV2.sol:52"
+            },
+            {
+              "label": "teamWallet",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "BankV2",
+              "src": "contracts/BankV2.sol:58"
+            },
+            {
+              "label": "tokens",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_mapping(t_address,t_struct(Token)3859_storage)",
+              "contract": "BankV2",
+              "src": "contracts/BankV2.sol:61"
+            },
+            {
+              "label": "_tokensList",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_mapping(t_uint8,t_address)",
+              "contract": "BankV2",
+              "src": "contracts/BankV2.sol:64"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_mapping(t_address,t_struct(Token)3859_storage)": {
+              "label": "mapping(address => struct BankV2.Token)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint8,t_address)": {
+              "label": "mapping(uint8 => address)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(HouseEdgeSplit)3847_storage": {
+              "label": "struct BankV2.HouseEdgeSplit",
+              "members": [
+                {
+                  "label": "bank",
+                  "type": "t_uint16",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "dividend",
+                  "type": "t_uint16",
+                  "offset": 2,
+                  "slot": "0"
+                },
+                {
+                  "label": "treasury",
+                  "type": "t_uint16",
+                  "offset": 4,
+                  "slot": "0"
+                },
+                {
+                  "label": "team",
+                  "type": "t_uint16",
+                  "offset": 6,
+                  "slot": "0"
+                },
+                {
+                  "label": "dividendAmount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "treasuryAmount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "teamAmount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "3"
+                }
+              ],
+              "numberOfBytes": "128"
+            },
+            "t_struct(Token)3859_storage": {
+              "label": "struct BankV2.Token",
+              "members": [
+                {
+                  "label": "allowed",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "paused",
+                  "type": "t_bool",
+                  "offset": 1,
+                  "slot": "0"
+                },
+                {
+                  "label": "balanceRisk",
+                  "type": "t_uint16",
+                  "offset": 2,
+                  "slot": "0"
+                },
+                {
+                  "label": "minBetAmount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "houseEdgeSplit",
+                  "type": "t_struct(HouseEdgeSplit)3847_storage",
+                  "offset": 0,
+                  "slot": "2"
+                }
+              ],
+              "numberOfBytes": "192"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "contracts/CoinToss.sol:CoinTossV5": {
+        "src": "contracts/CoinToss.sol:17",
+        "version": {
+          "withMetadata": "161d192d11bad1e63446b3c3e6fbf5c1d56039eb70b2eba9e604da1717bc1c75",
+          "withoutMetadata": "1c359fdeb3ccbe405b8a910800f5b5053fd3ac85461077d39ac819dc34fbf1c1",
+          "linkedWithoutMetadata": "1c359fdeb3ccbe405b8a910800f5b5053fd3ac85461077d39ac819dc34fbf1c1"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/security/ReentrancyGuard.sol:ReentrancyGuard",
+          "@openzeppelin/contracts/utils/Multicall.sol:Multicall",
+          "@openzeppelin/contracts/security/Pausable.sol:Pausable",
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context",
+          "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:VRFConsumerBaseV2"
+        ],
+        "libraries": [
+          "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:SafeERC20"
+        ],
+        "methods": [
+          "(uint64,address)",
+          "hasPendingBets(address)",
+          "setBank(address)",
+          "setHouseEdge(address,uint16)",
+          "updateMultiplier(uint256)",
+          "getBetData(uint256)",
+          "getBetStatus(uint256)",
+          "refundBet(uint256)",
+          "wager(bool,address,uint256)",
+          "getBalance()",
+          "getTokenBalance(address)",
+          "pause()",
+          "getLastUserBets(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "CoinTossV5",
+            "src": "contracts/CoinToss.sol:174"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "vrfCoordinator",
+            "src": "contracts/CoinToss.sol:31"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "keyHash",
+            "src": "contracts/CoinToss.sol:36"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "callbackGasLimit",
+            "src": "contracts/CoinToss.sol:39"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "requestConfirmations",
+            "src": "contracts/CoinToss.sol:42"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "numWords",
+            "src": "contracts/CoinToss.sol:46"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "multiplier",
+            "src": "contracts/CoinToss.sol:296"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "_paused",
+              "offset": 20,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Pausable",
+              "src": "@openzeppelin/contracts/security/Pausable.sol:28"
+            },
+            {
+              "label": "_status",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "ReentrancyGuard",
+              "src": "@openzeppelin/contracts/security/ReentrancyGuard.sol:37"
+            },
+            {
+              "label": "bank",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_contract(IBankV2)7313",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:25"
+            },
+            {
+              "label": "s_subscriptionId",
+              "offset": 20,
+              "slot": "2",
+              "type": "t_uint64",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:27"
+            },
+            {
+              "label": "COORDINATOR",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_contract(VRFCoordinatorV2Interface)219",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:29"
+            },
+            {
+              "label": "vrfCoordinator",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_address",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:31"
+            },
+            {
+              "label": "keyHash",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_bytes32",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:36"
+            },
+            {
+              "label": "callbackGasLimit",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_uint32",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:39"
+            },
+            {
+              "label": "requestConfirmations",
+              "offset": 4,
+              "slot": "6",
+              "type": "t_uint16",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:42"
+            },
+            {
+              "label": "numWords",
+              "offset": 6,
+              "slot": "6",
+              "type": "t_uint32",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:46"
+            },
+            {
+              "label": "s_randomWords",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint256",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:48"
+            },
+            {
+              "label": "s_requestId",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_uint256",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:49"
+            },
+            {
+              "label": "s_owner",
+              "offset": 0,
+              "slot": "9",
+              "type": "t_address",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:50"
+            },
+            {
+              "label": "tokens",
+              "offset": 0,
+              "slot": "10",
+              "type": "t_mapping(t_address,t_struct(Token)5129_storage)",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:72"
+            },
+            {
+              "label": "bets",
+              "offset": 0,
+              "slot": "11",
+              "type": "t_mapping(t_uint256,t_struct(Bet)5150_storage)",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:92"
+            },
+            {
+              "label": "_userBets",
+              "offset": 0,
+              "slot": "12",
+              "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:95"
+            },
+            {
+              "label": "coinTossBets",
+              "offset": 0,
+              "slot": "13",
+              "type": "t_mapping(t_uint256,t_struct(CoinTossBet)5201_storage)",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:139"
+            },
+            {
+              "label": "multiplier",
+              "offset": 0,
+              "slot": "14",
+              "type": "t_uint256",
+              "contract": "CoinTossV5",
+              "src": "contracts/CoinToss.sol:296"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_address_payable": {
+              "label": "address payable",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_contract(IBankV2)7313": {
+              "label": "contract IBankV2",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFCoordinatorV2Interface)219": {
+              "label": "contract VRFCoordinatorV2Interface",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+              "label": "mapping(address => uint256[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_struct(Token)5129_storage)": {
+              "label": "mapping(address => struct CoinTossV5.Token)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint256,t_struct(Bet)5150_storage)": {
+              "label": "mapping(uint256 => struct CoinTossV5.Bet)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint256,t_struct(CoinTossBet)5201_storage)": {
+              "label": "mapping(uint256 => struct CoinTossV5.CoinTossBet)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Bet)5150_storage": {
+              "label": "struct CoinTossV5.Bet",
+              "members": [
+                {
+                  "label": "resolved",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "user",
+                  "type": "t_address_payable",
+                  "offset": 1,
+                  "slot": "0"
+                },
+                {
+                  "label": "token",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "id",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "amount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "blockTime",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                },
+                {
+                  "label": "betStatus",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "5"
+                }
+              ],
+              "numberOfBytes": "192"
+            },
+            "t_struct(CoinTossBet)5201_storage": {
+              "label": "struct CoinTossV5.CoinTossBet",
+              "members": [
+                {
+                  "label": "face",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "rolled",
+                  "type": "t_bool",
+                  "offset": 1,
+                  "slot": "0"
+                }
+              ],
+              "numberOfBytes": "32"
+            },
+            "t_struct(Token)5129_storage": {
+              "label": "struct CoinTossV5.Token",
+              "members": [
+                {
+                  "label": "houseEdge",
+                  "type": "t_uint16",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "pendingCount",
+                  "type": "t_uint64",
+                  "offset": 2,
+                  "slot": "0"
+                }
+              ],
+              "numberOfBytes": "32"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint32": {
+              "label": "uint32",
+              "numberOfBytes": "4"
+            },
+            "t_uint64": {
+              "label": "uint64",
+              "numberOfBytes": "8"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "contracts/Dice.sol:DiceV4": {
+        "src": "contracts/Dice.sol:16",
+        "version": {
+          "withMetadata": "3b8cc98dfee39bd41d9a89aa49c88243cf922e92cfbff7133024c8b51a90c04e",
+          "withoutMetadata": "1e2cd7d6a76741af2d5819b946f30ef7a10b89ba6004872483f5cc16509d81b0",
+          "linkedWithoutMetadata": "1e2cd7d6a76741af2d5819b946f30ef7a10b89ba6004872483f5cc16509d81b0"
+        },
+        "inherit": [
+          "@openzeppelin/contracts/security/ReentrancyGuard.sol:ReentrancyGuard",
+          "@openzeppelin/contracts/utils/Multicall.sol:Multicall",
+          "@openzeppelin/contracts/security/Pausable.sol:Pausable",
+          "@openzeppelin/contracts/access/Ownable.sol:Ownable",
+          "@openzeppelin/contracts/utils/Context.sol:Context",
+          "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol:VRFConsumerBaseV2"
+        ],
+        "libraries": [
+          "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol:SafeERC20"
+        ],
+        "methods": [
+          "(uint64,address)",
+          "hasPendingBets(address)",
+          "setBank(address)",
+          "setHouseEdge(address,uint16)",
+          "updateMultiplier(uint256)",
+          "getBetData(uint256)",
+          "getBetStatus(uint256)",
+          "refundBet(uint256)",
+          "wager(uint8,address,uint256)",
+          "getBalance()",
+          "getTokenBalance(address)",
+          "pause()",
+          "getLastUserBets(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "DiceV4",
+            "src": "contracts/Dice.sol:178"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "vrfCoordinator",
+            "src": "contracts/Dice.sol:29"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "keyHash",
+            "src": "contracts/Dice.sol:34"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "callbackGasLimit",
+            "src": "contracts/Dice.sol:37"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "requestConfirmations",
+            "src": "contracts/Dice.sol:40"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "numWords",
+            "src": "contracts/Dice.sol:44"
+          },
+          {
+            "kind": "state-variable-assignment",
+            "name": "multiplier",
+            "src": "contracts/Dice.sol:302"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "label": "_owner",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address",
+              "contract": "Ownable",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:21"
+            },
+            {
+              "label": "_paused",
+              "offset": 20,
+              "slot": "0",
+              "type": "t_bool",
+              "contract": "Pausable",
+              "src": "@openzeppelin/contracts/security/Pausable.sol:28"
+            },
+            {
+              "label": "_status",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256",
+              "contract": "ReentrancyGuard",
+              "src": "@openzeppelin/contracts/security/ReentrancyGuard.sol:37"
+            },
+            {
+              "label": "s_subscriptionId",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint64",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:25"
+            },
+            {
+              "label": "COORDINATOR",
+              "offset": 8,
+              "slot": "2",
+              "type": "t_contract(VRFCoordinatorV2Interface)219",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:27"
+            },
+            {
+              "label": "vrfCoordinator",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_address",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:29"
+            },
+            {
+              "label": "keyHash",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:34"
+            },
+            {
+              "label": "callbackGasLimit",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:37"
+            },
+            {
+              "label": "requestConfirmations",
+              "offset": 4,
+              "slot": "5",
+              "type": "t_uint16",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:40"
+            },
+            {
+              "label": "numWords",
+              "offset": 6,
+              "slot": "5",
+              "type": "t_uint32",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:44"
+            },
+            {
+              "label": "s_randomWords",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_uint256",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:46"
+            },
+            {
+              "label": "s_requestId",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint256",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:47"
+            },
+            {
+              "label": "s_owner",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_address",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:48"
+            },
+            {
+              "label": "bank",
+              "offset": 0,
+              "slot": "9",
+              "type": "t_contract(IBankV2)7313",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:50"
+            },
+            {
+              "label": "bets",
+              "offset": 0,
+              "slot": "10",
+              "type": "t_mapping(t_uint256,t_struct(Bet)6224_storage)",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:78"
+            },
+            {
+              "label": "_userBets",
+              "offset": 0,
+              "slot": "11",
+              "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:81"
+            },
+            {
+              "label": "diceBets",
+              "offset": 0,
+              "slot": "12",
+              "type": "t_mapping(t_uint256,t_struct(DiceBet)6270_storage)",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:123"
+            },
+            {
+              "label": "betAuditCheck",
+              "offset": 0,
+              "slot": "13",
+              "type": "t_mapping(t_uint256,t_struct(betAudit)6281_storage)",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:130"
+            },
+            {
+              "label": "tokens",
+              "offset": 0,
+              "slot": "14",
+              "type": "t_mapping(t_address,t_struct(Token)6326_storage)",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:174"
+            },
+            {
+              "label": "multiplier",
+              "offset": 0,
+              "slot": "15",
+              "type": "t_uint256",
+              "contract": "DiceV4",
+              "src": "contracts/Dice.sol:302"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address",
+              "numberOfBytes": "20"
+            },
+            "t_address_payable": {
+              "label": "address payable",
+              "numberOfBytes": "20"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]",
+              "numberOfBytes": "32"
+            },
+            "t_bool": {
+              "label": "bool",
+              "numberOfBytes": "1"
+            },
+            "t_bytes32": {
+              "label": "bytes32",
+              "numberOfBytes": "32"
+            },
+            "t_contract(IBankV2)7313": {
+              "label": "contract IBankV2",
+              "numberOfBytes": "20"
+            },
+            "t_contract(VRFCoordinatorV2Interface)219": {
+              "label": "contract VRFCoordinatorV2Interface",
+              "numberOfBytes": "20"
+            },
+            "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+              "label": "mapping(address => uint256[])",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_address,t_struct(Token)6326_storage)": {
+              "label": "mapping(address => struct DiceV4.Token)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint256,t_struct(Bet)6224_storage)": {
+              "label": "mapping(uint256 => struct DiceV4.Bet)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint256,t_struct(DiceBet)6270_storage)": {
+              "label": "mapping(uint256 => struct DiceV4.DiceBet)",
+              "numberOfBytes": "32"
+            },
+            "t_mapping(t_uint256,t_struct(betAudit)6281_storage)": {
+              "label": "mapping(uint256 => struct DiceV4.betAudit)",
+              "numberOfBytes": "32"
+            },
+            "t_struct(Bet)6224_storage": {
+              "label": "struct DiceV4.Bet",
+              "members": [
+                {
+                  "label": "resolved",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "user",
+                  "type": "t_address_payable",
+                  "offset": 1,
+                  "slot": "0"
+                },
+                {
+                  "label": "token",
+                  "type": "t_address",
+                  "offset": 0,
+                  "slot": "1"
+                },
+                {
+                  "label": "id",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "2"
+                },
+                {
+                  "label": "amount",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "3"
+                },
+                {
+                  "label": "blockTime",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "4"
+                },
+                {
+                  "label": "betStatus",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "5"
+                }
+              ],
+              "numberOfBytes": "192"
+            },
+            "t_struct(DiceBet)6270_storage": {
+              "label": "struct DiceV4.DiceBet",
+              "members": [
+                {
+                  "label": "cap",
+                  "type": "t_uint8",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "rolled",
+                  "type": "t_uint8",
+                  "offset": 1,
+                  "slot": "0"
+                }
+              ],
+              "numberOfBytes": "32"
+            },
+            "t_struct(Token)6326_storage": {
+              "label": "struct DiceV4.Token",
+              "members": [
+                {
+                  "label": "houseEdge",
+                  "type": "t_uint16",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "pendingCount",
+                  "type": "t_uint64",
+                  "offset": 2,
+                  "slot": "0"
+                }
+              ],
+              "numberOfBytes": "32"
+            },
+            "t_struct(betAudit)6281_storage": {
+              "label": "struct DiceV4.betAudit",
+              "members": [
+                {
+                  "label": "paid",
+                  "type": "t_bool",
+                  "offset": 0,
+                  "slot": "0"
+                },
+                {
+                  "label": "betId",
+                  "type": "t_uint256",
+                  "offset": 0,
+                  "slot": "1"
+                }
+              ],
+              "numberOfBytes": "64"
+            },
+            "t_uint16": {
+              "label": "uint16",
+              "numberOfBytes": "2"
+            },
+            "t_uint256": {
+              "label": "uint256",
+              "numberOfBytes": "32"
+            },
+            "t_uint32": {
+              "label": "uint32",
+              "numberOfBytes": "4"
+            },
+            "t_uint64": {
+              "label": "uint64",
+              "numberOfBytes": "8"
+            },
+            "t_uint8": {
+              "label": "uint8",
+              "numberOfBytes": "1"
+            }
+          },
+          "layoutVersion": "1.2",
+          "flat": true
+        },
+        "solcVersion": "0.8.12"
+      },
+      "contracts/interface/IBankV2.sol:IBankV2": {
+        "src": "contracts/interface/IBankV2.sol:5",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "isAllowedToken(address)",
+          "payout(address payable,address,uint256,uint256)",
+          "cashIn(address,uint256)",
+          "getMaxBetAmount(address,uint256)",
+          "harvestDividends()",
+          "getDividends()",
+          "getTokenOwner(address)",
+          "getMinBetAmount(address)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.2",
+          "flat": false
+        },
+        "solcVersion": "0.8.12"
+      }
+    }
+  ]
+}

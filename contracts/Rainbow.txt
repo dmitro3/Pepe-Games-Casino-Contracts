@@ -1,0 +1,498 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {Multicall} from "@openzeppelin/contracts/utils/Multicall.sol";
+import {Pausable} from "@openzeppelin/contracts/security/Pausable.sol";
+import {IERC20, SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
+import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+
+import {IBankV2} from "./interface/IBankV2.sol";
+
+contract RainbowV4 is     Ownable,
+Pausable,
+Multicall,
+VRFConsumerBaseV2,
+ReentrancyGuard
+{
+    using SafeERC20 for IERC20;
+
+    uint64 s_subscriptionId;
+
+    VRFCoordinatorV2Interface COORDINATOR;
+
+    address vrfCoordinator = 0xbd13f08b8352A3635218ab9418E340c60d6Eb418;
+
+    // The gas lane to use, which specifies the maximum gas price to bump to.
+    // For a list of available gas lanes on each network,
+    // see https://docs.chain.link/docs/vrf-contracts/#configurations
+    bytes32 keyHash =
+        0x121a143066e0f2f08b620784af77cccb35c6242460b4a8ee251b4b416abaebd4;
+
+    uint32 callbackGasLimit = 200000;
+
+    // The default is 3, but you can set this higher.
+    uint16 requestConfirmations = 3;
+
+    // For this example, retrieve 2 random values in one request.
+    // Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
+    uint32 numWords = 2;
+
+    uint256 public s_randomWords;
+    uint256 public s_requestId;
+    address public s_owner;
+
+    struct Bet {
+        bool resolved;
+        address payable user;
+        address token;
+        uint256 id;
+        uint256 amount;
+        uint256 blockNumber;
+        bool betStatus;
+        // uint256 payout;
+    }
+
+    // Fee struct
+    struct Fee {
+        uint256 betAmountFee;
+        uint256 ProfitFee;
+    }
+
+    /// @notice Maps bets IDs to Bet information.
+    mapping(uint256 => Bet) public bets;
+
+    /// @notice Maps users addrejsses to bets IDs
+    mapping(address => uint256[]) internal _userBets;
+
+    /// @notice Emitted after the bet amount is transfered to the user.
+    /// @param id The bet ID.
+    /// @param user Address of the gamer.
+    /// @param amount Number of tokens refunded.
+    /// @param chainlinkVRFCost The Chainlink VRF cost refunded to player.
+    event BetRefunded(
+        uint256 id,
+        address user,
+        uint256 amount,
+        uint256 chainlinkVRFCost
+    );
+
+    /// @notice Insufficient bet amount.
+    /// @param minBetAmount Bet amount.
+    error UnderMinBetAmount(uint256 minBetAmount);
+
+    /// @notice Bet isn't resolved yet.
+    error NotFulfilled();
+
+    /// @notice Bet provided doesn't exist or was already resolved.
+    error NotPendingBet();
+
+    struct FullColorSelection {
+        Bet bet;
+        ColorSelection colorSelected;
+    }
+
+    struct ColorSelection {
+        uint256 selectedColor;
+        uint256 generatedValue;
+    }
+
+    struct ColorList {
+        uint256 red;
+        uint256 orange;
+        uint256 yellow;
+        uint256 green;
+        uint256 blue;
+        uint256 indigo;
+        uint256 violet;
+    }
+
+    mapping(uint256 => ColorList) colorArr;
+
+    struct betAudit {
+        bool paid;
+        uint256 betId;
+    }
+
+    struct Token {
+        uint16 houseEdge;
+        uint64 pendingCount;
+        uint32 VRFCallbackGasLimit;
+        uint256 VRFFees;
+    }
+
+
+    mapping(uint256 => betAudit) betAuditCheck;
+
+    /// @notice Maps bets IDs to chosen and rolled coin faces.
+    mapping(uint256 => ColorSelection) public colorSelected;
+
+    /// @notice Emitted after a bet is placed.
+    /// @param id The bet ID.
+    /// @param user Address of the gamer.
+    /// @param token Address of the token.
+    /// @param amount The bet amount.
+    /// @param number The chosen coin face.
+    event PlaceBet(
+        uint256 id,
+        address indexed user,
+        address indexed token,
+        uint256 amount,
+        uint256 number
+    );
+
+    /// @notice Emitted after a bet is rolled.
+    /// @param id The bet ID.
+    /// @param user Address of the gamer.
+    /// @param token Address of the token.
+    /// @param amount The bet amount.
+    /// @param selected The chosen color.
+    /// @param generated The generated color.
+    event Roll(
+        uint256 id,
+        address indexed user,
+        address indexed token,
+        uint256 amount,
+        uint256 selected,
+        uint256 generated
+        // uint256 payout
+    );
+
+    // Ends heref
+
+    constructor(
+        uint64 subscriptionId,
+        address bankAddress,
+        address walletAddress
+    ) VRFConsumerBaseV2(vrfCoordinator)  {
+        COORDINATOR = VRFCoordinatorV2Interface(vrfCoordinator);
+        s_owner = msg.sender;
+        s_subscriptionId = subscriptionId;
+        setBank(IBankV2(bankAddress));
+        setWalletContract(walletAddress);
+    }
+
+
+    /// @notice Check if the token has the 0x address.
+    /// @param token Address of the token.
+    /// @return Whether the token's address is the 0x address.
+    function _isGasToken(address token) private pure returns (bool) {
+        return token == address(0);
+    }
+
+    // Rainbow
+    function createRainbowList(uint256 id) public onlyOwner {
+        require(id != 0, "Id must not be empty");
+        colorArr[id] = ColorList({
+            red: 1,
+            orange: 2,
+            yellow: 3,
+            green: 4,
+            blue: 5,
+            indigo: 6,
+            violet: 7
+        });
+    }
+
+    function getColors(uint256 id) public view returns (ColorList memory) {
+        ColorList memory data = colorArr[id];
+        return data;
+    }
+
+    function _newBet(
+        address tokenAddress,
+        uint256 tokenAmount,
+        uint256 multi
+    ) internal whenNotPaused nonReentrant returns (Bet memory) {
+        Token storage token = tokens[tokenAddress];
+        if (
+            bank.isAllowedToken(tokenAddress) == false || token.houseEdge == 0
+        ) {
+            revert ForbiddenToken();
+        }
+
+        address user = msg.sender;
+        bool isGasToken = tokenAddress == address(0);
+        uint256 betAmount = tokenAmount;
+
+        {
+            uint256 minBetAmount = bank.getMinBetAmount(tokenAddress);
+            if (betAmount < minBetAmount) {
+                revert UnderMinBetAmount(minBetAmount);
+            }
+
+            uint256 maxBetAmount = bank.getMaxBetAmount(tokenAddress, multi);
+            if (betAmount > maxBetAmount) {
+                if (isGasToken) {
+                    payable(user).transfer(betAmount - maxBetAmount);
+                }
+                betAmount = maxBetAmount;
+            }
+        }
+
+        s_requestId = COORDINATOR.requestRandomWords(
+            keyHash,
+            s_subscriptionId,
+            requestConfirmations,
+            callbackGasLimit,
+            numWords
+        );
+
+        Bet memory newBet = Bet(
+            false,
+            payable(user),
+            tokenAddress,
+            s_requestId,
+            betAmount,
+            block.number,
+            false
+            // 0
+        );
+        _userBets[user].push(s_requestId);
+        bets[s_requestId] = newBet;
+
+        // If ERC20, transfer the tokens
+        if (!isGasToken) {
+            IERC20(tokenAddress).safeTransferFrom(
+                user,
+                address(bank),
+                betAmount
+            );
+            // tokens goes to either this contract or bank
+        }
+
+        return newBet;
+    }
+
+    // Wallet
+
+    uint256 public multiplier = 3;
+
+    function updateMultiplier(uint256 amount) external onlyOwner {
+        multiplier = amount;
+    }
+
+    function getMultiplier() private view returns (uint256) {
+        return multiplier;
+    }
+
+    function processPayouts(
+        Bet storage bet,
+        bool status,
+        uint256 amount // address token // bool isGasToken
+    ) internal {
+        require(bet.user != address(0), "Dead Wallet cannot bet");
+        bool isGasToken = false;
+        address user = bet.user;
+
+        BetWallet storage walletData = betBalance[user];
+
+        // add getPayout func later
+
+        // If User won the bet
+        if (status == true) {
+            if (isGasToken) {
+                payable(user).transfer(amount);
+            } else {
+                if (walletData.audited == false) {
+                    betBalance[user] = BetWallet({
+                        balance: amount,
+                        tokenAddress: bet.token,
+                        account: user,
+                        audited: true
+                    });
+                    return;
+                }
+                // Multiple bet amount;
+                uint256 betAmount = amount;
+
+                walletData.balance += betAmount;
+            }
+            return;
+        }
+        // if User lost the bet
+        else {
+            if (walletData.audited == false) {
+                betBalance[user] = BetWallet({
+                    balance: 0,
+                    tokenAddress: bet.token,
+                    account: user,
+                    audited: true
+                });
+                return;
+            }
+
+            // if the wallet balance is already 0 return the process
+            if (walletData.balance <= 0) {
+                return;
+            }
+
+            walletData.balance = walletData.balance - amount;
+
+            return;
+        }
+    }
+
+    /// @notice Gets the list of the last user bets.
+    /// @param user Address of the gamer.
+    /// @param dataLength The amount of bets to return.
+    /// @return A list of Bet.
+    function _getLastUserBets(address user, uint256 dataLength)
+        internal
+        view
+        returns (Bet[] memory)
+    {
+        uint256[] memory userBetsIds = _userBets[user];
+        uint256 betsLength = userBetsIds.length;
+
+        if (betsLength < dataLength) {
+            dataLength = betsLength;
+        }
+
+        Bet[] memory userBets = new Bet[](dataLength);
+        if (dataLength != 0) {
+            uint256 userBetsIndex;
+            for (uint256 i = betsLength; i > betsLength - dataLength; i--) {
+                userBets[userBetsIndex] = bets[userBetsIds[i - 1]];
+                userBetsIndex++;
+            }
+        }
+
+        return userBets;
+    }
+
+    function getBetData(uint256 id) public view returns (Bet memory betData) {
+        Bet storage data = bets[id];
+        return data;
+    }
+
+    function getBetStatus(uint256 id) public view returns (bool status) {
+        Bet storage data = bets[id];
+        return data.betStatus;
+    }
+
+    /// @notice Refunds the bet to the user if the Chainlink VRF callback failed.
+    /// @param id The Bet ID.
+    function refundBet(uint256 id) external nonReentrant {
+        Bet storage bet = bets[id];
+        if (bet.resolved == true) {
+            revert NotPendingBet();
+        } else if (block.number < bet.blockNumber + 30) {
+            revert NotFulfilled();
+        }
+
+        Token storage token = tokens[bet.token];
+        token.pendingCount--;
+
+        bet.resolved = true;
+        // bet.payout = bet.amount;
+
+        if (bet.token == address(0)) {
+            payable(bet.user).transfer(bet.amount);
+        } else {
+            IERC20(bet.token).safeTransfer(bet.user, bet.amount);
+        }
+    }
+
+    // Coin toss start here
+    /// @notice Calculates the target payout amount.
+    /// @param betAmount Bet amount.
+    /// @return The target payout amount.
+    function _getPayout(uint256 betAmount) private pure returns (uint256) {
+        return betAmount * 3;
+    }
+
+    /// @notice Creates a new bet and stores the chosen coin face.
+    /// @param colorNumber The chosen color number from the struct .
+    /// @param token Address of the token.
+    /// @param tokenAmount The number of tokens bet.
+    function wager(
+        uint256 colorNumber,
+        address token,
+        uint256 tokenAmount
+    ) external payable whenNotPaused {
+        Bet memory bet = _newBet(token, tokenAmount, _getPayout(10000));
+
+        colorSelected[bet.id].selectedColor = colorNumber;
+
+        emit PlaceBet(bet.id, bet.user, bet.token, bet.amount, colorNumber);
+    }
+
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    /// @notice Gets the token's balance.
+    /// The token's house edge allocation amounts are subtracted from the balance.
+    /// @param token Address of the token.
+    /// @return The amount of token available for profits.
+    function getTokenBalance(address token) public view returns (uint256) {
+        uint256 tokenBal;
+        if (_isGasToken(token)) {
+            return tokenBal = address(this).balance;
+        } else {
+            return tokenBal = IERC20(token).balanceOf(address(this));
+        }
+    }
+
+    function fulfillRandomWords(
+        uint256 id, /* requestId */
+        uint256[] memory randomWords
+    ) internal override {
+        ColorSelection storage colorSelectionData = colorSelected[id];
+
+        Bet storage bet = bets[id];
+        uint256 roller = (randomWords[0] % 7) + 1;
+
+        colorSelectionData.generatedValue = roller;
+
+        if (roller == colorSelectionData.selectedColor) {
+            bet.resolved = true;
+            bet.betStatus = true;
+            processPayouts(bet, bet.betStatus, _getPayout(bet.amount));
+        } else {
+            bet.resolved = true;
+            bet.betStatus = false;
+        }
+
+        emit Roll(
+            bet.id,
+            bet.user,
+            bet.token,
+            bet.amount,
+            colorSelectionData.selectedColor,
+            colorSelectionData.generatedValue
+            // payout
+        );
+    }
+
+    /// @notice Pauses the contract to disable new bets.
+    function pause() external onlyOwner {
+        if (paused()) {
+            _unpause();
+        } else {
+            _pause();
+        }
+    }
+
+    function getLastUserBets(address user, uint256 dataLength)
+        external
+        view
+        returns (FullColorSelection[] memory)
+    {
+        Bet[] memory lastBets = _getLastUserBets(user, dataLength);
+        FullColorSelection[] memory lastColorBets = new FullColorSelection[](
+            lastBets.length
+        );
+        for (uint256 i; i < lastBets.length; i++) {
+            lastColorBets[i] = FullColorSelection(
+                lastBets[i],
+                colorSelected[lastBets[i].id]
+            );
+        }
+        return lastColorBets;
+    }
+}
